@@ -61,10 +61,10 @@ var s=checkTime(today.getSeconds());
 $('.clocktext').html(h + ':' + m + ':' + s);
   
   if(today.getHours() > 18) {
-    $('.clock').attr('dark','1')
+    $('.clock,body').attr('dark','1')
   }
   if(today.getHours() < 18) {
-    $('.clock').attr('dark','0')
+    $('.clock,body').attr('dark','0')
   }
 }, 100);
 
