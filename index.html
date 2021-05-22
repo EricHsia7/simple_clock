@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - A Pen by EricHsia7</title>
+  <title>Clock</title>
   <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap');
 .clock {
@@ -48,7 +48,29 @@ body[dark="0"] {
 </div>
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
-  <script  src="./script.js"></script>
+  <script>
+  setInterval(function(){
+  var today=new Date()
+var h=checkTime(today.getHours());
+var m=checkTime(today.getMinutes());
+var s=checkTime(today.getSeconds());
+$('.clocktext').html(h + ':' + m + ':' + s);
+  
+  if(today.getHours() > 18) {
+    $('.clock').attr('dark','1')
+  }
+  if(today.getHours() < 18) {
+    $('.clock').attr('dark','0')
+  }
+}, 100);
+
+function checkTime(i)
+{
+if (i<10) 
+  {i="0" + i}
+  return i
+}
+  </script>
 
 </body>
 </html>
