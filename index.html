@@ -1,18 +1,54 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html>
 <head>
   <meta charset="UTF-8">
   <title>CodePen - A Pen by EricHsia7</title>
-  <link rel="stylesheet" href="./style.css">
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap');
+.clock {
+  position:fixed;
+  left:0px;
+  top:0px;
+  background:#fff;
+  width:100%;
+  height:100%;
+  transition:3s;
+}
+.clock[dark="1"] {
+  background:#000;
+  color:#fff;
+}
+.clock[dark="0"] {
+  background:#fff;
+  color:#000;
+}
+.clocktext {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:5em;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight:700;
+  transition:3s;
+}
+body[dark="1"] {
+  background:#000;
+}
+body[dark="0"] {
+  background:#fff;
+}
+  </style>
 
 </head>
 <body>
-<!-- partial:index.partial.html -->
+
 <div class="clock" dark="0">
   <span class="clocktext">00:00:00</span> 
 </div>
-<!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script><script  src="./script.js"></script>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+  <script  src="./script.js"></script>
 
 </body>
 </html>
