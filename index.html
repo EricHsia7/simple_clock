@@ -1,90 +1,96 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="clock.png" sizes="512x512" rel="apple-touch-icon-precomposed" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="defualt" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
-    <title>Clock</title>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap');
 
-      .clock {
-        position: fixed;
-        left: 0px;
-        top: 0px;
-        background: #fff;
-        width: 100%;
-        height: 100%;
-        transition: 3s;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="clock.png" sizes="512x512" rel="apple-touch-icon-precomposed" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="defualt" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+  <title>Clock</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap');
 
-      body[dark="1"] .clock {
-        background: #000;
-        color: #fff;
-      }
+    .clock {
+      position: fixed;
+      left: 0px;
+      top: 0px;
+      background: #fff;
+      width: 100%;
+      height: 100%;
+      transition: 3s;
+      user-select: none;
+      -webkit-user-select: none;
+    }
 
-      body[dark="0"] .clock {
-        background: #fff;
-        color: #000;
-      }
+    body[dark="1"] .clock {
+      background: #000;
+      color: #fff;
+    }
 
-      .clocktext {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 5em;
-        font-family: 'Noto Sans TC', sans-serif;
-        font-weight: 700;
-        transition: 3s;
-      }
+    body[dark="0"] .clock {
+      background: #fff;
+      color: #000;
+    }
 
-      body {
-        transition: 3s;
-      }
+    .clocktext {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 5em;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+      transition: 3s;
+      user-select: none;
+      -webkit-user-select: none;
+    }
 
-      body[dark="1"] {
-        background: #000;
-      }
+    body {
+      transition: 3s;
+    }
 
-      body[dark="0"] {
-        background: #fff;
-      }
-    </style>
-  </head>
+    body[dark="1"] {
+      background: #000;
+    }
 
-  <body dark="0">
-    <div class="clock">
-      <span class="clocktext">00:00:00</span>
-    </div>
+    body[dark="0"] {
+      background: #fff;
+    }
+  </style>
+</head>
 
-    <script>
-      function updateText() {
-        var today = new Date();
-        var h = checkTime(today.getHours());
-        var m = checkTime(today.getMinutes());
-        var s = checkTime(today.getSeconds());
-        document.querySelector('.clocktext').innerText = [h, m, s].join(':');
-        if (today.getHours() > 18 || today.getHours() < 6) {
-          document.querySelector('body').setAttribute('dark', '1');
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000000');
-        } else {
-          document.querySelector('body').setAttribute('dark', '0');
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff');
-        }
-        window.requestAnimationFrame(updateText);
-      }
+<body dark="0">
+  <div class="clock">
+    <span class="clocktext">00:00:00</span>
+  </div>
 
-      function checkTime(i) {
-        if (i < 10) {
-          i = '0' + i;
-        }
-        return i;
+  <script>
+    function updateText() {
+      var today = new Date();
+      var h = checkTime(today.getHours());
+      var m = checkTime(today.getMinutes());
+      var s = checkTime(today.getSeconds());
+      document.querySelector('.clocktext').innerText = [h, m, s].join(':');
+      if (today.getHours() > 18 || today.getHours() < 6) {
+        document.querySelector('body').setAttribute('dark', '1');
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000000');
+      } else {
+        document.querySelector('body').setAttribute('dark', '0');
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff');
       }
       window.requestAnimationFrame(updateText);
-    </script>
-  </body>
+    }
+
+    function checkTime(i) {
+      if (i < 10) {
+        i = '0' + i;
+      }
+      return i;
+    }
+    window.requestAnimationFrame(updateText);
+  </script>
+</body>
+
 </html>
