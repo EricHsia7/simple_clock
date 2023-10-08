@@ -1,83 +1,90 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="clock.png" sizes="512x512" rel="apple-touch-icon-precomposed" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="defualt" />
-  <title>Clock</title>
-  <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap');
-.clock {
-  position:fixed;
-  left:0px;
-  top:0px;
-  background:#fff;
-  width:100%;
-  height:100%;
-  transition:3s;
-}
-.clock[dark="1"] {
-  background:#000;
-  color:#fff;
-}
-.clock[dark="0"] {
-  background:#fff;
-  color:#000;
-}
-.clocktext {
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  font-size:5em;
-  font-family: 'Noto Sans TC', sans-serif;
-  font-weight:700;
-  transition:3s;
-}
-    body {
-transition:3s;
-    }
-body[dark="1"] {
-  background:#000;
-}
-body[dark="0"] {
-  background:#fff;
-}
-  </style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="clock.png" sizes="512x512" rel="apple-touch-icon-precomposed" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="defualt" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+    <title>Clock</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap');
 
-</head>
-<body>
+      .clock {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        background: #fff;
+        width: 100%;
+        height: 100%;
+        transition: 3s;
+      }
 
-<div class="clock" dark="0">
-  <span class="clocktext">00:00:00</span> 
-</div>
+      .clock[dark="1"] {
+        background: #000;
+        color: #fff;
+      }
 
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
-  <script>
-  setInterval(function(){
-  var today=new Date()
-var h=checkTime(today.getHours());
-var m=checkTime(today.getMinutes());
-var s=checkTime(today.getSeconds());
-$('.clocktext').html(h + ':' + m + ':' + s);
-  
-  if(today.getHours() > 18) {
-    $('.clock,body').attr('dark','1')
-  }
-  if(today.getHours() < 18) {
-    $('.clock,body').attr('dark','0')
-  }
-}, 100);
+      .clock[dark="0"] {
+        background: #fff;
+        color: #000;
+      }
 
-function checkTime(i)
-{
-if (i<10) 
-  {i="0" + i}
-  return i
-}
-  </script>
+      .clocktext {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 5em;
+        font-family: 'Noto Sans TC', sans-serif;
+        font-weight: 700;
+        transition: 3s;
+      }
 
-</body>
+      body {
+        transition: 3s;
+      }
+
+      body[dark="1"] {
+        background: #000;
+      }
+
+      body[dark="0"] {
+        background: #fff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="clock" dark="0">
+      <span class="clocktext">00:00:00</span>
+    </div>
+
+    <script>
+      function updateText() {
+        var today = new Date();
+        var h = checkTime(today.getHours());
+        var m = checkTime(today.getMinutes());
+        var s = checkTime(today.getSeconds());
+        document.querySelector('.clocktext').innerText = [h, m, s].join(':');
+        if (today.getHours() > 18 || today.getHours() < 6) {
+          document.querySelector('.clock,body').setAttribute('dark', '1');
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000000');
+        } else {
+          document.querySelector('.clock,body').setAttribute('dark', '0');
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff');
+        }
+        window.requestAnimationFrame(updateText);
+      }
+
+      function checkTime(i) {
+        if (i < 10) {
+          i = '0' + i;
+        }
+        return i;
+      }
+      window.requestAnimationFrame(updateText);
+    </script>
+  </body>
 </html>
