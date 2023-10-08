@@ -21,12 +21,12 @@
         transition: 3s;
       }
 
-      .clock[dark="1"] {
+      body[dark="1"] .clock {
         background: #000;
         color: #fff;
       }
 
-      .clock[dark="0"] {
+      body[dark="0"] .clock {
         background: #fff;
         color: #000;
       }
@@ -56,8 +56,8 @@
     </style>
   </head>
 
-  <body>
-    <div class="clock" dark="0">
+  <body dark="0">
+    <div class="clock">
       <span class="clocktext">00:00:00</span>
     </div>
 
@@ -69,10 +69,10 @@
         var s = checkTime(today.getSeconds());
         document.querySelector('.clocktext').innerText = [h, m, s].join(':');
         if (today.getHours() > 18 || today.getHours() < 6) {
-          document.querySelector('.clock,body').setAttribute('dark', '1');
+          document.querySelector('body').setAttribute('dark', '1');
           document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000000');
         } else {
-          document.querySelector('.clock,body').setAttribute('dark', '0');
+          document.querySelector('body').setAttribute('dark', '0');
           document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff');
         }
         window.requestAnimationFrame(updateText);
