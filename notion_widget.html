@@ -1,63 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clock</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clock</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet" />
 
-    <style>
+  <style>
     :root {
-    --c-bg:#ffffff;
-    --c-text:#37352F;
+      --c-bg: #ffffff;
+      --c-text: #37352F;
     }
+
     @media (prefers-color-scheme: dark) {
-    :root {
-    --c-bg:#191919;
-    --c-text:#ffffff;
-    
+      :root {
+        --c-bg: #191919;
+        --c-text: #ffffff;
+
+      }
     }
-    }
-    body,.clock {
-    background:var(--c-bg);
-    }
+
+    body,
     .clock {
-    position: absolute;
-    top:0px;
-    left:0px;
-    width:100%;
-    height:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:3rem;
-font-family:'Comfortaa', sans-serif;
-    color: var(--c-text);
+      background: var(--c-bg);
     }
-    </style>
+
+    .clock {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 3rem;
+      font-family: 'Comfortaa', sans-serif;
+      color: var(--c-text);
+    }
+  </style>
 </head>
+
 <body>
-    <Div class="clock"></div>
-    <script>
-    const clock_element = document.querySelector('.clock')
-    
+  <div class="clock"></div>
+  <script>
+    const clock_element = document.querySelector('.clock');
+
     function update() {
-var date = new Date()
-var hh = String(date.getHours()).padStart(2,'0')
-var mm = String(date.getMinutes()).padStart(2,'0')
-var ss = String(date.getSeconds()).padStart(2,'0')
+      var date = new Date();
+      var hh = String(date.getHours()).padStart(2, '0');
+      var mm = String(date.getMinutes()).padStart(2, '0');
+      var ss = String(date.getSeconds()).padStart(2, '0');
 
-  clock_element.innerText = `${hh}:${mm}:${ss}`
-  
-  
-  // Request the next animation frame
-  requestAnimationFrame(update);
-}
+      clock_element.innerText = `${hh}:${mm}:${ss}`;
 
-// Start the animation
-update();
-    </script>
+      // Request the next animation frame
+      requestAnimationFrame(update);
+    }
+
+    // Start the animation
+    update();
+  </script>
 </body>
+
 </html>
